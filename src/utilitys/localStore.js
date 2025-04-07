@@ -22,15 +22,9 @@ const addItemLocalStorage = id =>{
 }
 
 const removeFromLocStorage = (id)=>{
-    const storedCart = localStorage.getItem('cart');
-
-    if (storedCart) {
-        const parseData = JSON.parse(storedCart);
-        const filterLocalData =  parseData.filter(localDataId => localDataId !== id)
-        
-        localStorage.removeItem('cart');
-        saveItemToLocalStorage(filterLocalData)
-    } else return []
+    const getCart = getItemFromLocalStorage()
+    const delCartData = getCart.filter(cartData => cartData  !== id)
+    saveItemToLocalStorage(delCartData)
 }
 
 export { getItemFromLocalStorage , addItemLocalStorage , removeFromLocStorage}
